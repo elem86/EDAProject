@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 
-df = pd.read_csv("/Programming/EDAProject/EDAProject/vehicles_us.csv")
+df = pd.read_csv("vehicles_us.csv")
 
 df["is_4wd"] = df["is_4wd"].fillna(0).astype(int)
 df.groupby("is_4wd")["is_4wd"].count()
