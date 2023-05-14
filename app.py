@@ -1,15 +1,23 @@
 import pandas as pd
 import streamlit as st
 import plotly.express as px
+import numpy as np
 
 df = pd.read_csv("vehicles_us.csv")
 
-df["is_4wd"] = df["is_4wd"].fillna(0).astype(int)
+df['is_4wd'] = df['is_4wd'].fillna(0).astype(bool)
 df.groupby("is_4wd")["is_4wd"].count()
 
-types_to_replace = ["model_year", "cylinders", "odometer"]
+df["model_year"] = df["model_year"].fillna(df.groupby('model')["model_year"].transform('median'))
+df["cylinders"] = df["cylinders"].fillna(df.groupby('model')["cylinders"].transform('median'))
+df["odometer"] = df["odometer"].fillna(df.groupby('model_year')["odometer"].transform('median'))
+
+df['odometer'] = df['odometer'].fillna(0)
+# found a row where the odometer was 0, probably a new car, this is the fix I applied. Since it is one row of data, there is no significance to it. 
+
+types_to_replace = ['model_year', 'cylinders', 'odometer']
 for column in types_to_replace:
-    df[column] = df[column].fillna(df[column].median()).astype(int)
+    df[column] = df[column].apply(np.int64)
 
 df["paint_color"] = df["paint_color"].fillna("unknown")
 # paint_color was the only non numberic column with mising values, replaced those values with "unknown".
