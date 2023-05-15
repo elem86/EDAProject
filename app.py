@@ -33,16 +33,12 @@ st.header("Data viewer")
 st.dataframe(df)
 
 
-st.header("Distribution of Cars by Condition")
+st.header("Distribution of Cars by Model Year")
 
-fig = px.histogram(
-    df,
-    x="condition",
-    histnorm="density",
-    color_discrete_sequence=["blue"],
-    barmode="overlay",
-)
-fig.update_layout(xaxis={"categoryorder": "total descending"})
+fig = px.histogram(df, x="model_year", nbins=25, histnorm='density',                     
+                    color_discrete_sequence=["blue"],
+                    barmode='overlay')
+
 st.write(fig)
 
 

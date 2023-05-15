@@ -21,7 +21,7 @@ Installed pandas, plotly-express, streamlit in this file.
 At ths point I cleaned the dataset and created the charts.
 
 ## Histograms:
-Distribution of Cars by Condition - Wanted to see the amount of ads per condition.
+Distribution of Cars by Model Year - Wanted to see the amount of ads per model year.
 
 Distribution of Cars by Manufacturer - A histogram to show the amount of ads per manufacturer.
 
