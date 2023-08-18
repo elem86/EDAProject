@@ -2,7 +2,6 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 import numpy as np
-from altair.vegalite.v4 import Chart
 import altair as alt
 
 df = pd.read_csv("vehicles_us.csv")
