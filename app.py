@@ -3,6 +3,7 @@ import streamlit as st
 import plotly.express as px
 import numpy as np
 import altair as alt
+from altair.vegalite.v4 import Chart
 
 
 df = pd.read_csv("vehicles_us.csv")
