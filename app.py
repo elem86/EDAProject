@@ -4,6 +4,7 @@ import plotly.express as px
 import numpy as np
 import altair as alt
 
+
 df = pd.read_csv("vehicles_us.csv")
 
 df['is_4wd'] = df['is_4wd'].fillna(0).astype(bool)
