@@ -15,18 +15,20 @@ df["model_year"] = df["model_year"].fillna(df.groupby('model')["model_year"].tra
 df["cylinders"] = df["cylinders"].fillna(df.groupby('model')["cylinders"].transform('median'))
 df["odometer"] = df["odometer"].fillna(df.groupby('model_year')["odometer"].transform('median'))
 
-df['odometer'] = df['odometer'].fillna(0)
 # found a row where the odometer was 0, probably a new car, this is the fix I applied. Since it is one row of data, there is no significance to it. 
+df['odometer'] = df['odometer'].fillna(0)
+
 
 types_to_replace = ['model_year', 'cylinders', 'odometer']
 for column in types_to_replace:
     df[column] = df[column].apply(np.int64)
 
-df["paint_color"] = df["paint_color"].fillna("unknown")
 # paint_color was the only non numberic column with mising values, replaced those values with "unknown".
+df["paint_color"] = df["paint_color"].fillna("unknown")
 
-df["date_posted"] = df["date_posted"].astype("datetime64[ns]")
 # converted the date_posted column to datetime type.
+df["date_posted"] = df["date_posted"].astype("datetime64[ns]")
+
 
 df["manufacturer"] = df["model"].apply(lambda x: x.split()[0])
 
